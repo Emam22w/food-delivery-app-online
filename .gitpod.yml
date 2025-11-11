@@ -4,15 +4,11 @@ image: gitpod/workspace-full:latest
 tasks:
   - name: Setup Flutter
     init: |
-      # Install Flutter SDK (if not already present)
-      # This step assumes a full workspace image, but we'll ensure Flutter is ready.
-      # For simplicity and speed, we'll rely on the base image's capabilities or a quick setup.
-      # Since we can't guarantee the base image, we'll focus on the core commands.
-      # A better approach is to use a custom Dockerfile, but for a quick setup, we'll use the commands.
-      # Let's assume the base image has the necessary tools (like Dart/Flutter or we can install them).
-      # For this scenario, I will use the commands that will work if Flutter is available or can be installed.
-      # However, the best practice is to use a pre-built image. I will use a simplified version.
+      # The gitpod/workspace-full image should have most tools, but we ensure Flutter is on path.
+      # A common issue is the Flutter SDK not being on the PATH.
+      # We will rely on the image having Flutter and just run the necessary commands.
       echo "Setting up Flutter environment..."
+      flutter doctor -v
       flutter pub get
     command: |
       echo "Starting Flutter web application..."
